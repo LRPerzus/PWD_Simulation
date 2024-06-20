@@ -1,9 +1,0 @@
-{
-	"id": "Vbw0aEOhjB8trAY",
-	"json": "{\"id\":\"Vbw0aEOhjB8trAY\",\"url\":\"https://www.tech.gov.sg/\",\"loadedUrl\":\"https://www.tech.gov.sg/\",\"uniqueKey\":\"https://www.tech.gov.sg\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-06-19T07:51:56.408Z\"}",
-	"method": "GET",
-	"orderNo": null,
-	"retryCount": 0,
-	"uniqueKey": "https://www.tech.gov.sg",
-	"url": "https://www.tech.gov.sg/"
-}
