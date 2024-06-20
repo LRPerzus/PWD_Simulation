@@ -1,8 +1,73 @@
 import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
+import * as fs from 'fs-extra';
+import path from 'path';
 
 
+// Interfaces/Classes
 interface ElementDict {
     [ElementXpath: string]: { Element: object };
+}
+
+interface Dimensions {
+    width: number;
+    height: number;
+}
+
+interface ElementInfo {
+    tagName: string | undefined;
+    classList: DOMTokenList | undefined;
+    id: string | undefined;
+    boundsRect: DOMRect|undefined;
+    xpath: string;
+}
+
+// Functions
+
+// Function to create an SVG with specified dimensions
+function createSvg(width: number, height: number, element:ElementInfo): string {
+    console.log("WIDTH", width);
+    console.log("height", height);
+    // Initialize position variables
+    let xPos: number = 0;
+    let yPos: number = 0;
+    let svgContent = "";
+
+    // Check if element.boundsRect is defined and has required properties
+    if (element.boundsRect?.x !== undefined && element.boundsRect?.y !== undefined) {
+        xPos = element.boundsRect.x;
+        yPos = element.boundsRect.y;
+
+        // Create a new SVG document
+        svgContent = `
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="blue" />
+        </svg>
+    `;
+
+    }
+
+    return svgContent.trim();
+}
+
+// Function to save the SVG to a file
+function saveSvgToFile(svgContent: string, fileName: number): void {
+    // Specify the full file path
+    const filePath = `/Users/lianglee-royjesse/PWD_Simulation/svgs_elements/${fileName}.svg`;
+
+    // Ensure the directory exists
+    const directory = "/Users/lianglee-royjesse/PWD_Simulation/svgs_elements";
+    if (!fs.existsSync(directory)) {
+        fs.mkdirSync(directory, { recursive: true });
+    }
+
+    // Write the SVG content to the file
+    fs.writeFile(filePath, svgContent, (err) => {
+        if (err) {
+            console.error(`Error saving SVG file ${fileName}: ${err}`);
+        } else {
+            console.log(`SVG file ${fileName} saved successfully.`);
+        }
+    });
 }
 
 const ElementMoved:ElementDict = {};
@@ -16,6 +81,16 @@ const crawler = new PlaywrightCrawler({
         const content = await page.content();
 
         let activeElementTagName: string | undefined = '';
+
+        // The whole page currently
+        const dimensionsOfPage:Dimensions = await page.evaluate(() => {
+            return {
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            };
+        });
+        
+        let count = 0;
 
         while (activeElementTagName !== 'BODY')
         {
@@ -53,15 +128,15 @@ const crawler = new PlaywrightCrawler({
                     return xPath;
                 };
 
-                const Element:Element | null = document.activeElement;     
-
-                return {
+                const Element:Element | null = document.activeElement;
+                const outputElement:ElementInfo = {
                     tagName : Element?.tagName,
                     classList : Element?.classList,
                     id: Element?.id,
                     boundsRect : Element?.getBoundingClientRect(),
                     xpath: getXPath(Element),
-                };
+                }
+                return outputElement;
             });
             activeElementTagName = focusedElement?.tagName;
 
@@ -80,9 +155,15 @@ const crawler = new PlaywrightCrawler({
                 break;
             }
 
+            // Write into SVG
+            const svg:string = createSvg(dimensionsOfPage.width,dimensionsOfPage.height,focusedElement);
+            saveSvgToFile(svg,count);
+
             ElementMoved[xpathFocus] = {Element : focusedElement};
+            count++;
 
             console.log('Focused Element:', ElementMoved[xpathFocus].Element);
+
             // Store the results in a dataset
         }
         await Dataset.pushData({ ElementMoved });
@@ -94,3 +175,5 @@ const crawler = new PlaywrightCrawler({
 (async () => {
     await crawler.run(startUrls);
 })();
+
+
