@@ -1,0 +1,1186 @@
+{
+	"ElementMoved": {
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "navbar-item"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 380,
+					"y": 28,
+					"width": 200,
+					"height": 100,
+					"top": 28,
+					"right": 580,
+					"bottom": 128,
+					"left": 380
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "navbar-link",
+					"1": "is-uppercase"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 620,
+					"y": 28,
+					"width": 268.765625,
+					"height": 100,
+					"top": 28,
+					"right": 888.765625,
+					"bottom": 128,
+					"left": 620
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "navbar-link",
+					"1": "is-uppercase"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 912.765625,
+					"y": 28,
+					"width": 131.9609375,
+					"height": 100,
+					"top": 28,
+					"right": 1044.7265625,
+					"bottom": 128,
+					"left": 912.765625
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "navbar-link",
+					"1": "is-uppercase"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1068.7265625,
+					"y": 28,
+					"width": 100.1796875,
+					"height": 100,
+					"top": 28,
+					"right": 1168.90625,
+					"bottom": 128,
+					"left": 1068.7265625
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[5]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "navbar-link",
+					"1": "is-uppercase"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1192.90625,
+					"y": 28,
+					"width": 83.6171875,
+					"height": 100,
+					"top": 28,
+					"right": 1276.5234375,
+					"bottom": 128,
+					"left": 1192.90625
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/div[5]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/li[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-uppercase"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1300.5234375,
+					"y": 66.75,
+					"width": 92.25,
+					"height": 22.5,
+					"top": 66.75,
+					"right": 1392.7734375,
+					"bottom": 89.25,
+					"left": 1300.5234375
+				},
+				"xpath": "/html[1]/body[1]/div[1]/nav[1]/div[1]/div[2]/div[1]/li[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "bp-button",
+					"1": "is-secondary",
+					"2": "is-uppercase",
+					"3": "search-button"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 908.9296875,
+					"y": 481.296875,
+					"width": 230.140625,
+					"height": 54.3984375,
+					"top": 481.296875,
+					"right": 1139.0703125,
+					"bottom": 535.6953125,
+					"left": 908.9296875
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-highlight"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 624,
+					"width": 319.25,
+					"height": 121.890625,
+					"top": 624,
+					"right": 703.25,
+					"bottom": 745.890625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-highlight"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 704.25,
+					"y": 624,
+					"width": 319.25,
+					"height": 121.890625,
+					"top": 624,
+					"right": 1023.5,
+					"bottom": 745.890625,
+					"left": 704.25
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-highlight"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1024.5,
+					"y": 624,
+					"width": 319.25,
+					"height": 121.890625,
+					"top": 624,
+					"right": 1343.75,
+					"bottom": 745.890625,
+					"left": 1024.5
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-highlight"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1344.75,
+					"y": 624,
+					"width": 319.25,
+					"height": 121.890625,
+					"top": 624,
+					"right": 1664,
+					"bottom": 745.890625,
+					"left": 1344.75
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[2]/div[1]/div[1]/div[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[3]/div[1]/div[3]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "bp-sec-button",
+					"1": "margin--top",
+					"2": "padding--bottom"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 436,
+					"y": 1109.390625,
+					"width": 524,
+					"height": 43,
+					"top": 1109.390625,
+					"right": 960,
+					"bottom": 1152.390625,
+					"left": 436
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[3]/div[1]/div[3]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[4]/div[1]/div[3]/div[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "bp-sec-button",
+					"1": "margin--top",
+					"2": "padding--bottom"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1088,
+					"y": 554.890625,
+					"width": 524,
+					"height": 43,
+					"top": 554.890625,
+					"right": 1612,
+					"bottom": 597.890625,
+					"left": 1088
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[4]/div[1]/div[3]/div[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[5]/div[1]/div[3]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "bp-sec-button",
+					"1": "margin--top",
+					"2": "padding--bottom"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 436,
+					"y": 1083.890625,
+					"width": 524,
+					"height": 43,
+					"top": 1083.890625,
+					"right": 960,
+					"bottom": 1126.890625,
+					"left": 436
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[5]/div[1]/div[3]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-media-card"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 408.390625,
+					"width": 410.6640625,
+					"height": 336,
+					"top": 408.390625,
+					"right": 794.6640625,
+					"bottom": 744.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-media-card"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 818.6640625,
+					"y": 408.390625,
+					"width": 410.6640625,
+					"height": 336,
+					"top": 408.390625,
+					"right": 1229.328125,
+					"bottom": 744.390625,
+					"left": 818.6640625
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "is-media-card"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1253.328125,
+					"y": 408.390625,
+					"width": 410.6640625,
+					"height": 336,
+					"top": 408.390625,
+					"right": 1663.9921875,
+					"bottom": 744.390625,
+					"left": 1253.328125
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[6]/div[1]/div[2]/div[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/div[2]/section[6]/div[1]/div[3]/div[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "bp-sec-button"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 818.6640625,
+					"y": 800.390625,
+					"width": 410.6640625,
+					"height": 27,
+					"top": 800.390625,
+					"right": 1229.328125,
+					"bottom": 827.390625,
+					"left": 818.6640625
+				},
+				"xpath": "/html[1]/body[1]/div[2]/section[6]/div[1]/div[3]/div[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[1]/b[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "has-text-white"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 1037.390625,
+					"width": 201.4921875,
+					"height": 19.5,
+					"top": 1037.390625,
+					"right": 585.4921875,
+					"bottom": 1056.890625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[1]/b[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 1077.390625,
+					"width": 80.515625,
+					"height": 19.5,
+					"top": 1077.390625,
+					"right": 464.515625,
+					"bottom": 1096.890625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 1117.390625,
+					"width": 219.265625,
+					"height": 19.5,
+					"top": 1117.390625,
+					"right": 603.265625,
+					"bottom": 1136.890625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 653.890625,
+					"width": 211.6171875,
+					"height": 44.5,
+					"top": 653.890625,
+					"right": 595.6171875,
+					"bottom": 698.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[5]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 718.890625,
+					"width": 196.1171875,
+					"height": 19.5,
+					"top": 718.890625,
+					"right": 580.1171875,
+					"bottom": 738.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[5]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[6]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 758.890625,
+					"width": 165.875,
+					"height": 19.5,
+					"top": 758.890625,
+					"right": 549.875,
+					"bottom": 778.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[6]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[7]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 798.890625,
+					"width": 213.6640625,
+					"height": 19.5,
+					"top": 798.890625,
+					"right": 597.6640625,
+					"bottom": 818.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[7]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[8]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 838.890625,
+					"width": 101.03125,
+					"height": 19.5,
+					"top": 838.890625,
+					"right": 485.03125,
+					"bottom": 858.390625,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[1]/p[8]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[1]/b[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "has-text-white"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 533.890625,
+					"width": 102.421875,
+					"height": 19.5,
+					"top": 533.890625,
+					"right": 741.21875,
+					"bottom": 553.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[1]/b[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 573.890625,
+					"width": 74.8828125,
+					"height": 19.5,
+					"top": 573.890625,
+					"right": 713.6796875,
+					"bottom": 593.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 613.890625,
+					"width": 99.8125,
+					"height": 19.5,
+					"top": 613.890625,
+					"right": 738.609375,
+					"bottom": 633.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 653.890625,
+					"width": 175.3671875,
+					"height": 19.5,
+					"top": 653.890625,
+					"right": 814.1640625,
+					"bottom": 673.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[5]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 693.890625,
+					"width": 169.4140625,
+					"height": 44.5,
+					"top": 693.890625,
+					"right": 808.2109375,
+					"bottom": 738.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[5]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[6]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 758.890625,
+					"width": 107.25,
+					"height": 19.5,
+					"top": 758.890625,
+					"right": 746.046875,
+					"bottom": 778.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[6]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[7]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 638.796875,
+					"y": 798.890625,
+					"width": 80.59375,
+					"height": 19.5,
+					"top": 798.890625,
+					"right": 719.390625,
+					"bottom": 818.390625,
+					"left": 638.796875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[2]/p[7]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[1]/b[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "has-text-white"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 533.890625,
+					"width": 67.6875,
+					"height": 19.5,
+					"top": 533.890625,
+					"right": 961.28125,
+					"bottom": 553.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[1]/b[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 573.890625,
+					"width": 106.8828125,
+					"height": 19.5,
+					"top": 573.890625,
+					"right": 1000.4765625,
+					"bottom": 593.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 613.890625,
+					"width": 115.6328125,
+					"height": 19.5,
+					"top": 613.890625,
+					"right": 1009.2265625,
+					"bottom": 633.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 653.890625,
+					"width": 179.859375,
+					"height": 19.5,
+					"top": 653.890625,
+					"right": 1073.453125,
+					"bottom": 673.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[5]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 693.890625,
+					"width": 171.3828125,
+					"height": 44.5,
+					"top": 693.890625,
+					"right": 1064.9765625,
+					"bottom": 738.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[5]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[6]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 893.59375,
+					"y": 758.890625,
+					"width": 109.171875,
+					"height": 19.5,
+					"top": 758.890625,
+					"right": 1002.765625,
+					"bottom": 778.390625,
+					"left": 893.59375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[3]/p[6]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[1]/b[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "has-text-white"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 533.890625,
+					"width": 56.2578125,
+					"height": 19.5,
+					"top": 533.890625,
+					"right": 1204.6484375,
+					"bottom": 553.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[1]/b[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 573.890625,
+					"width": 31.078125,
+					"height": 19.5,
+					"top": 573.890625,
+					"right": 1179.46875,
+					"bottom": 593.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 613.890625,
+					"width": 173.921875,
+					"height": 19.5,
+					"top": 613.890625,
+					"right": 1322.3125,
+					"bottom": 633.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[4]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 653.890625,
+					"width": 59.4765625,
+					"height": 19.5,
+					"top": 653.890625,
+					"right": 1207.8671875,
+					"bottom": 673.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[4]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[5]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 693.890625,
+					"width": 120.8984375,
+					"height": 19.5,
+					"top": 693.890625,
+					"right": 1269.2890625,
+					"bottom": 713.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[5]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[6]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 733.890625,
+					"width": 77.78125,
+					"height": 19.5,
+					"top": 733.890625,
+					"right": 1226.171875,
+					"bottom": 753.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[6]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[7]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 773.890625,
+					"width": 84.1953125,
+					"height": 19.5,
+					"top": 773.890625,
+					"right": 1232.5859375,
+					"bottom": 793.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[7]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[8]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 813.890625,
+					"width": 50.46875,
+					"height": 19.5,
+					"top": 813.890625,
+					"right": 1198.859375,
+					"bottom": 833.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[8]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[9]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 853.890625,
+					"width": 74.59375,
+					"height": 19.5,
+					"top": 853.890625,
+					"right": 1222.984375,
+					"bottom": 873.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[9]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[10]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1148.390625,
+					"y": 893.890625,
+					"width": 65.5859375,
+					"height": 19.5,
+					"top": 893.890625,
+					"right": 1213.9765625,
+					"bottom": 913.390625,
+					"left": 1148.390625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[1]/div[4]/p[10]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "social-link",
+					"1": "padding--right",
+					"2": "padding--bottom",
+					"3": "is-inline-block"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1403.1953125,
+					"y": 529.890625,
+					"width": 40,
+					"height": 40,
+					"top": 529.890625,
+					"right": 1443.1953125,
+					"bottom": 569.890625,
+					"left": 1403.1953125
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[2]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "social-link",
+					"1": "padding--right",
+					"2": "padding--bottom",
+					"3": "is-inline-block"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1443.1953125,
+					"y": 529.890625,
+					"width": 40,
+					"height": 40,
+					"top": 529.890625,
+					"right": 1483.1953125,
+					"bottom": 569.890625,
+					"left": 1443.1953125
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[2]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[3]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "social-link",
+					"1": "padding--right",
+					"2": "padding--bottom",
+					"3": "is-inline-block"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1483.1953125,
+					"y": 529.890625,
+					"width": 40,
+					"height": 40,
+					"top": 529.890625,
+					"right": 1523.1953125,
+					"bottom": 569.890625,
+					"left": 1483.1953125
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[3]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[4]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "social-link",
+					"1": "padding--right",
+					"2": "padding--bottom",
+					"3": "is-inline-block"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1523.1953125,
+					"y": 529.890625,
+					"width": 40,
+					"height": 40,
+					"top": 529.890625,
+					"right": 1563.1953125,
+					"bottom": 569.890625,
+					"left": 1523.1953125
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[4]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[5]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {
+					"0": "social-link",
+					"1": "padding--bottom",
+					"2": "is-inline-block"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 1563.1953125,
+					"y": 529.890625,
+					"width": 36,
+					"height": 40,
+					"top": 529.890625,
+					"right": 1599.1953125,
+					"bottom": 569.890625,
+					"left": 1563.1953125
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[2]/div[2]/a[5]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1170.9765625,
+					"y": 986.390625,
+					"width": 154.0234375,
+					"height": 19.5,
+					"top": 986.390625,
+					"right": 1325,
+					"bottom": 1005.890625,
+					"left": 1170.9765625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[2]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1328.09375,
+					"y": 986.390625,
+					"width": 140.6796875,
+					"height": 19.5,
+					"top": 986.390625,
+					"right": 1468.7734375,
+					"bottom": 1005.890625,
+					"left": 1328.09375
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[2]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[3]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1471.8671875,
+					"y": 986.390625,
+					"width": 102.1484375,
+					"height": 19.5,
+					"top": 986.390625,
+					"right": 1574.015625,
+					"bottom": 1005.890625,
+					"left": 1471.8671875
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[3]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[4]/p[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 1574.015625,
+					"y": 986.390625,
+					"width": 89.984375,
+					"height": 19.5,
+					"top": 986.390625,
+					"right": 1664,
+					"bottom": 1005.890625,
+					"left": 1574.015625
+				},
+				"xpath": "/html[1]/body[1]/footer[1]/div[1]/div[3]/div[1]/ul[1]/li[4]/p[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[2]/div[1]/div[2]/div[1]/ul[1]/li[1]/p[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 384,
+					"y": 1094.9296875,
+					"width": 244.9453125,
+					"height": 14.5,
+					"top": 1094.9296875,
+					"right": 628.9453125,
+					"bottom": 1109.4296875,
+					"left": 384
+				},
+				"xpath": "/html[1]/body[1]/footer[2]/div[1]/div[2]/div[1]/ul[1]/li[1]/p[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/footer[2]/div[1]/div[2]/div[1]/ul[1]/li[2]/p[1]/a[1]": {
+			"Element": {
+				"tagName": "A",
+				"classList": {},
+				"id": "",
+				"boundsRect": {
+					"x": 632.0390625,
+					"y": 1094.9296875,
+					"width": 227.390625,
+					"height": 14.5,
+					"top": 1094.9296875,
+					"right": 859.4296875,
+					"bottom": 1109.4296875,
+					"left": 632.0390625
+				},
+				"xpath": "/html[1]/body[1]/footer[2]/div[1]/div[2]/div[1]/ul[1]/li[2]/p[1]/a[1]"
+			}
+		},
+		"/html[1]/body[1]/wog-sentiments[1]": {
+			"Element": {
+				"tagName": "WOG-SENTIMENTS",
+				"classList": {
+					"0": "needsclick",
+					"1": "hydrated"
+				},
+				"id": "",
+				"boundsRect": {
+					"x": 0,
+					"y": 1151.890625,
+					"width": 0,
+					"height": 0,
+					"top": 1151.890625,
+					"right": 0,
+					"bottom": 1151.890625,
+					"left": 0
+				},
+				"xpath": "/html[1]/body[1]/wog-sentiments[1]"
+			}
+		}
+	}
+}
