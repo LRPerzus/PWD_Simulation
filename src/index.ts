@@ -1,6 +1,5 @@
 import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
 import * as fs from 'fs-extra';
-import path from 'path';
 
 
 // Interfaces/Classes
@@ -76,6 +75,7 @@ const startUrls = ['https://www.tech.gov.sg/'];
 
 const crawler = new PlaywrightCrawler({
     async requestHandler({ page, request, enqueueLinks }) {
+        await page.setViewportSize({ width: 1980, height: 1080 });
         console.log(`Processing ${request.url}...`);
         const title = await page.title();
         const content = await page.content();
