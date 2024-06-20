@@ -7,7 +7,7 @@ interface ElementDict {
 
 const ElementMoved:ElementDict = {};
 
-const startUrls = ['https://www.tech.gov.sg/'];a
+const startUrls = ['https://www.tech.gov.sg/'];
 
 const crawler = new PlaywrightCrawler({
     async requestHandler({ page, request, enqueueLinks }) {
