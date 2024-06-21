@@ -1,10 +1,17 @@
 import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
 import * as fs from 'fs-extra';
+import { Page } from 'playwright';
 
 
 // Interfaces/Classes
 interface ElementDict {
-    [ElementXpath: string]: { Element: object };
+    [ElementXpath: string]: { Element: ElementInfo };
+}
+
+interface RulesBrokenDict
+{
+    [Type: string]: {currentElement : DOMRect|undefined,
+                    previousElement: DOMRect|undefined}
 }
 
 interface Dimensions {
@@ -18,6 +25,7 @@ interface ElementInfo {
     id: string | undefined;
     boundsRect: DOMRect|undefined;
     xpath: string;
+    nextElement?: string;
 }
 
 // Functions
@@ -69,17 +77,40 @@ function saveSvgToFile(svgContent: string, fileName: number): void {
     });
 }
 
+// Function to capture scroll position
+const getScrollPosition = async (page:Page) => {
+    return await page.evaluate(() => {
+        return {
+            scrollX: window.scrollX,
+            scrollY: window.scrollY
+        };
+    });
+};
+
 const ElementMoved:ElementDict = {};
+const rulesbroken:RulesBrokenDict = {};
 
 const startUrls = ['https://www.tech.gov.sg/'];
 
 const crawler = new PlaywrightCrawler({
+    launchContext: {
+        launchOptions: {
+            viewport: { width: 1980, height: 1080 },
+        },
+    },
     async requestHandler({ page, request, enqueueLinks }) {
-        await page.setViewportSize({ width: 1980, height: 1080 });
         console.log(`Processing ${request.url}...`);
-        const title = await page.title();
-        const content = await page.content();
+        // Ensure the viewport size is explicitly set
+        await page.setViewportSize({ width: 1980, height: 1080 });
 
+        // Verify viewport size with null check
+        const viewportSize = await page.viewportSize();
+        if (viewportSize) {
+            console.log(`Viewport size: ${viewportSize.width}x${viewportSize.height}`);
+        } else {
+            console.log(`Viewport size is not set.`);
+        }
+        
         let activeElementTagName: string | undefined = '';
 
         // The whole page currently
@@ -91,6 +122,11 @@ const crawler = new PlaywrightCrawler({
         });
         
         let count = 0;
+        let prevousElementXpath = ""
+        let previousScrollPosition = {
+            scrollX:0,
+            scrollY:0
+        };
 
         while (activeElementTagName !== 'BODY')
         {
@@ -160,14 +196,54 @@ const crawler = new PlaywrightCrawler({
             saveSvgToFile(svg,count);
 
             ElementMoved[xpathFocus] = {Element : focusedElement};
-            count++;
+            
+            const currentScrollPosition = await getScrollPosition(page);
 
-            console.log('Focused Element:', ElementMoved[xpathFocus].Element);
+           if (prevousElementXpath != "") 
+           {
+            const previosElement = ElementMoved[prevousElementXpath].Element;
+            console.log("previosElement",previosElement);
+            const previousElementBoundRect = previosElement.boundsRect;
 
-            // Store the results in a dataset
+
+            // X need to be increaseing
+            // Y also needs to be increasing as well
+            // To see if it is logical 
+
+            if (previousElementBoundRect?.x !== undefined &&
+                focusedElement.boundsRect?.x !== undefined &&
+                previousElementBoundRect?.y !== undefined &&
+                focusedElement.boundsRect?.y !== undefined &&
+                // IF the x pos or the y pos relative to the screen view is increasing
+                // OR
+                // the screen has scrolled down
+                ((focusedElement.boundsRect.x > previousElementBoundRect.x ||
+                 focusedElement.boundsRect.y > previousElementBoundRect.y) || 
+                 (currentScrollPosition.scrollX > previousScrollPosition.scrollX ||
+                currentScrollPosition.scrollY > previousScrollPosition.scrollY)
+                )
+            )
+            {
+                console.log("X",focusedElement.boundsRect.x > previousElementBoundRect.x)
+                console.log("Y", focusedElement.boundsRect.y > previousElementBoundRect.y)                
+                console.log("Good Order") 
+
+            }
+            else
+            {
+                rulesbroken[count] = {currentElement:focusedElement.boundsRect,
+                previousElement:previosElement.boundsRect}
+                console.log("NOT LOCIGAL ORDER FROM LEFT TO RIGHT, UP TO DOWN")
+            }
         }
-        await Dataset.pushData({ ElementMoved });
-
+        // Updating the checks 
+        count++;
+        prevousElementXpath = xpathFocus;
+        previousScrollPosition = currentScrollPosition;
+        // Store the results in a dataset
+        await Dataset.pushData(ElementMoved[xpathFocus]);
+    }
+    console.log("HEY",rulesbroken);
     },
     maxRequestsPerCrawl: 1, // Limit the number of requests for the example
 });
@@ -175,5 +251,6 @@ const crawler = new PlaywrightCrawler({
 (async () => {
     await crawler.run(startUrls);
 })();
+
 
 
