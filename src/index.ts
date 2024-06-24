@@ -1,4 +1,5 @@
 import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
+import { elements } from 'chart.js';
 import * as fs from 'fs-extra';
 import { Page, errors } from 'playwright';
 
@@ -42,10 +43,22 @@ interface ElementInfo {
 
 // Functions
 
+// Function to calculate the center of a rectangle
+function getRectCenter(element:ElementInfo,xPos:number,yPos:number) {
+   
+    const width= element.boundsRect?.width ?? 0;
+    const height = element.boundsRect?.height?? 0;
+
+    return {
+        x: xPos + width / 2,
+        y: yPos + height / 2
+    };
+}
+
 // Function to create an SVG with specified dimensions
-function createSvg(width: number, height: number, element:ElementInfo): string {
+function createSvg(width: number, height: number, element:ElementInfo, previosElement:ElementInfo): string {
     console.log("WIDTH", width);
-    console.log("height", height);
+    console.log("Height", height);
     // Initialize position variables
     let xPos: number = 0;
     let yPos: number = 0;
@@ -55,22 +68,46 @@ function createSvg(width: number, height: number, element:ElementInfo): string {
     if (element.boundsRect?.x !== undefined 
         && element.boundsRect?.y !== undefined
         && element.window?.scrollX !== undefined 
-        && element.window?.scrollY !== undefined){
+        && element.window?.scrollY !== undefined
+        ){
+
+        // Current Element
         xPos = element.boundsRect.x + element.window.scrollX ;
         yPos = element.boundsRect.y + element.window.scrollY;
-        width +=  element.window.scrollX;
-        height += element.window.scrollY;
+        const currentElementCenter = getRectCenter(element,xPos,yPos);
+        
+        if (previosElement.boundsRect !== undefined)
+        {
+            // Previous Element
+            const previousXPos = (previosElement.boundsRect?.x ?? 0) + (previosElement.window?.scrollX ?? 0);
+            const previousYPos = (previosElement.boundsRect?.y ?? 0) + (previosElement.window?.scrollY ?? 0);
+            const previousElementCenter = getRectCenter(previosElement,previousXPos,previousYPos);
 
-        // Create a new SVG document
-        svgContent = `
-        <!-- ${element.xpath} -->
-
-        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-            <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="blue" />
-        </svg>
-    `;
-
+            // Create SVG content
+            svgContent = `
+                <!-- ${element.xpath} -->
+                <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="green" />
+                    <rect x="${previousXPos}" y="${previousYPos}" width="${previosElement.boundsRect.width}" height="${previosElement.boundsRect.height}" fill="red" />
+                    <line x1="${previousElementCenter.x}" y1="${previousElementCenter.y}" x2="${currentElementCenter.x}" y2="${currentElementCenter.y}" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="black" />
+                    </marker>
+                </svg>
+            `;
+        }
+        else{
+            // Create SVG content
+            svgContent = `
+                <!-- ${element.xpath} -->
+                <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+                    ${element && element.boundsRect? ` <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="green" />
+                    ` : ''}
+                </svg>
+            `;
+        }
     }
+    
 
     return svgContent.trim();
 }
@@ -134,18 +171,19 @@ const rulesbroken:RulesBrokenDict = {};
 
 // Use https://www.dungeonmastersvault.com/ for the case where there is an illogical flow to it
 // Use https://www.tech.gov.sg/ for a good test no Errors
-const startUrls = ['https://www.lazada.sg/tag/power-bank/?q=power%20bank&catalog_redirect_tag=true'];
+const startUrls = ['https://www.tech.gov.sg/'];
 
 const crawler = new PlaywrightCrawler({
     launchContext: {
+        // Playwright launch options
         launchOptions: {
-            viewport: { width: 1980, height: 1080 },
+            headless: false, // Set to true if you want to run in headless mode
         },
     },
     async requestHandler({ page, request, enqueueLinks }) {
         console.log(`Processing ${request.url}...`);
         // Ensure the viewport size is explicitly set
-        await page.setViewportSize({ width: 1980, height: 1080 });
+        await page.setViewportSize({ width: 1980, height: 1080});
 
         // Verify viewport size with null check
         const viewportSize = await page.viewportSize();
@@ -160,12 +198,15 @@ const crawler = new PlaywrightCrawler({
         // The whole page currently
         const dimensionsOfPage:Dimensions = await page.evaluate(() => {
             return {
-                width: document.documentElement.clientWidth,
-                height: document.documentElement.clientHeight
+                width: document.body.getBoundingClientRect().width,
+                height: document.body.getBoundingClientRect().height
             };
         });
+
+        console.log("dimensionsOfPage",dimensionsOfPage);
         
         let count = 0;
+        let previosElement:ElementInfo;
         let prevousElementXpath = ""
         let previousScrollPosition = {
             scrollX:0,
@@ -238,61 +279,79 @@ const crawler = new PlaywrightCrawler({
                 break;
             }
 
-            // Write into SVG
-            const svg:string = createSvg(dimensionsOfPage.width,dimensionsOfPage.height,focusedElement);
-            saveSvgToFile(svg,count);
-
+            
             ElementMoved[xpathFocus] = {Element : focusedElement};
             
-
            if (prevousElementXpath != "") 
            {
             const previosElement = ElementMoved[prevousElementXpath].Element;
-            console.log("previosElement",previosElement);
+            // console.log("previosElement",previosElement);
+            // Write into SVG
+            const svg:string = createSvg(dimensionsOfPage.width,dimensionsOfPage.height,focusedElement,previosElement);
+            saveSvgToFile(svg,count);
+
             const previousElementBoundRect = previosElement.boundsRect;
 
 
-            // X need to be increaseing
-            // Y also needs to be increasing as well
-            // To see if it is logical 
+                // X need to be increaseing
+                // Y also needs to be increasing as well
+                // To see if it is logical 
 
-            if (previousElementBoundRect?.x !== undefined &&
-                focusedElement.boundsRect?.x !== undefined &&
-                previousElementBoundRect?.y !== undefined &&
-                focusedElement.boundsRect?.y !== undefined &&
-                // IF the x pos or the y pos relative to the screen view is increasing
-                // OR
-                // the screen has scrolled down
-                (focusedElement.boundsRect.x > previousElementBoundRect.x ||
-                 focusedElement.boundsRect.y > previousElementBoundRect.y || 
-                 currentScrollPosition.scrollX > previousScrollPosition.scrollX ||
-                currentScrollPosition.scrollY > previousScrollPosition.scrollY
+                if (previousElementBoundRect?.x !== undefined &&
+                    focusedElement.boundsRect?.x !== undefined &&
+                    previousElementBoundRect?.y !== undefined &&
+                    focusedElement.boundsRect?.y !== undefined &&
+                    // IF the x pos or the y pos relative to the screen view is increasing
+                    // OR
+                    // the screen has scrolled down
+                    (focusedElement.boundsRect.x > previousElementBoundRect.x ||
+                    focusedElement.boundsRect.y > previousElementBoundRect.y || 
+                    currentScrollPosition.scrollX > previousScrollPosition.scrollX ||
+                    currentScrollPosition.scrollY > previousScrollPosition.scrollY
+                    )
                 )
-            )
-            {
-                console.log("X",focusedElement.boundsRect.x > previousElementBoundRect.x)
-                console.log("Y", focusedElement.boundsRect.y > previousElementBoundRect.y)                
-                console.log("Good Order") 
+                {
+                    console.log("X",focusedElement.boundsRect.x > previousElementBoundRect.x)
+                    console.log("Y", focusedElement.boundsRect.y > previousElementBoundRect.y)                
+                    console.log("Good Order") 
 
-            }
-            else
-            {
-                
-                rulesbroken[previosElement.xpath] = {
-                    currentElement:{
-                        domRect:focusedElement.boundsRect,
-                        windowX:currentScrollPosition.scrollX,
-                        windowY:currentScrollPosition.scrollY,
-                    },
-                    previousElement:{
-                        domRect:previosElement.boundsRect,
-                        windowX:previousScrollPosition.scrollX,
-                        windowY:previousScrollPosition.scrollY,
-                    }
                 }
-                console.log("NOT LOCIGAL ORDER FROM LEFT TO RIGHT, UP TO DOWN")
+                else
+                {
+                    
+                    rulesbroken[previosElement.xpath] = {
+                        currentElement:{
+                            domRect:focusedElement.boundsRect,
+                            windowX:currentScrollPosition.scrollX,
+                            windowY:currentScrollPosition.scrollY,
+                        },
+                        previousElement:{
+                            domRect:previosElement.boundsRect,
+                            windowX:previousScrollPosition.scrollX,
+                            windowY:previousScrollPosition.scrollY,
+                        }
+                    }
+                    console.log("NOT LOCIGAL ORDER FROM LEFT TO RIGHT, UP TO DOWN")
+                }
             }
-        }
+            else{
+                // Write into SVG
+                const emptyElement: ElementInfo = {
+                    tagName: undefined,
+                    classList: undefined,
+                    id: undefined,
+                    boundsRect: undefined,
+                    xpath: '',
+                    nextElement: undefined,
+                    window: {
+                        scrollX: 0,
+                        scrollY: 0,
+                    },
+                };
+
+                const svg:string = createSvg(dimensionsOfPage.width,dimensionsOfPage.height,focusedElement,emptyElement);
+                saveSvgToFile(svg,count);
+            }
         // Updating the checks 
         count++;
         prevousElementXpath = xpathFocus;
@@ -300,7 +359,6 @@ const crawler = new PlaywrightCrawler({
         // Store the results in a dataset
         await Dataset.pushData(ElementMoved[xpathFocus]);
     }
-    console.log("HEY",rulesbroken);
     saveErrorResults(rulesbroken);
 
 
