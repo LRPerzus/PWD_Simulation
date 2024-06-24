@@ -1,6 +1,6 @@
 import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
 import * as fs from 'fs-extra';
-import { Page } from 'playwright';
+import { Page, errors } from 'playwright';
 
 
 // Interfaces/Classes
@@ -10,8 +10,16 @@ interface ElementDict {
 
 interface RulesBrokenDict
 {
-    [Type: string]: {currentElement : DOMRect|undefined,
-                    previousElement: DOMRect|undefined}
+    [Type: string]: {currentElement : {
+                       domRect: DOMRect|undefined,
+                       windowX: number,
+                       windowY: number
+                    }
+                    previousElement: {
+                        domRect: DOMRect|undefined,
+                        windowX: number,
+                        windowY: number
+                     }}
 }
 
 interface Dimensions {
@@ -76,6 +84,29 @@ function saveSvgToFile(svgContent: string, fileName: number): void {
         }
     });
 }
+// functions saveErrorResults
+function saveErrorResults(rulesbroken:RulesBrokenDict): void {
+    // Specify the full file path
+    const fileName = "rulesbroken"
+    const filePath = `/Users/lianglee-royjesse/PWD_Simulation/RULESBROKEN/${fileName}.json`;
+
+    // Ensure the directory exists
+    const directory = "/Users/lianglee-royjesse/PWD_Simulation/RULESBROKEN";
+    if (!fs.existsSync(directory)) {
+        fs.mkdirSync(directory, { recursive: true });
+    }
+     // Convert the rulesbroken object to a JSON string
+     const jsonContent = JSON.stringify(rulesbroken, null, 2);
+
+    // Write the SVG content to the file
+    fs.writeFile(filePath, jsonContent, (err) => {
+        if (err) {
+            console.error(`Error saving SVG file ${fileName}: ${err}`);
+        } else {
+            console.log(`SVG file ${fileName} saved successfully.`);
+        }
+    });
+}
 
 // Function to capture scroll position
 const getScrollPosition = async (page:Page) => {
@@ -89,8 +120,9 @@ const getScrollPosition = async (page:Page) => {
 
 const ElementMoved:ElementDict = {};
 const rulesbroken:RulesBrokenDict = {};
-
-const startUrls = ['https://www.tech.gov.sg/'];
+// Use https://www.dungeonmastersvault.com/ for the case where there is an illogical flow to it
+// Use https://www.tech.gov.sg/ for a good test no Errors
+const startUrls = ['https://www.dungeonmastersvault.com/'];
 
 const crawler = new PlaywrightCrawler({
     launchContext: {
@@ -217,10 +249,10 @@ const crawler = new PlaywrightCrawler({
                 // IF the x pos or the y pos relative to the screen view is increasing
                 // OR
                 // the screen has scrolled down
-                ((focusedElement.boundsRect.x > previousElementBoundRect.x ||
-                 focusedElement.boundsRect.y > previousElementBoundRect.y) || 
-                 (currentScrollPosition.scrollX > previousScrollPosition.scrollX ||
-                currentScrollPosition.scrollY > previousScrollPosition.scrollY)
+                (focusedElement.boundsRect.x > previousElementBoundRect.x ||
+                 focusedElement.boundsRect.y > previousElementBoundRect.y || 
+                 currentScrollPosition.scrollX > previousScrollPosition.scrollX ||
+                currentScrollPosition.scrollY > previousScrollPosition.scrollY
                 )
             )
             {
@@ -231,8 +263,19 @@ const crawler = new PlaywrightCrawler({
             }
             else
             {
-                rulesbroken[count] = {currentElement:focusedElement.boundsRect,
-                previousElement:previosElement.boundsRect}
+                
+                rulesbroken[previosElement.xpath] = {
+                    currentElement:{
+                        domRect:focusedElement.boundsRect,
+                        windowX:currentScrollPosition.scrollX,
+                        windowY:currentScrollPosition.scrollY,
+                    },
+                    previousElement:{
+                        domRect:previosElement.boundsRect,
+                        windowX:previousScrollPosition.scrollX,
+                        windowY:previousScrollPosition.scrollY,
+                    }
+                }
                 console.log("NOT LOCIGAL ORDER FROM LEFT TO RIGHT, UP TO DOWN")
             }
         }
@@ -244,6 +287,9 @@ const crawler = new PlaywrightCrawler({
         await Dataset.pushData(ElementMoved[xpathFocus]);
     }
     console.log("HEY",rulesbroken);
+    saveErrorResults(rulesbroken);
+
+
     },
     maxRequestsPerCrawl: 1, // Limit the number of requests for the example
 });
