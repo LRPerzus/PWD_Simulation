@@ -1,189 +1,34 @@
-import { PlaywrightCrawler, Dataset } from '@crawlee/playwright';
-import { elements } from 'chart.js';
-import * as fs from 'fs-extra';
-import { Page, errors } from 'playwright';
+import { chromium, Browser, Page, BrowserContext } from 'playwright';
+import {ElementDict,Dimensions,ElementInfo,getScrollPosition,createSvg,saveSvgToFile,RulesBrokenDict,saveErrorResults} from "./common"
+import { Dataset } from '@crawlee/playwright';
 
+export const DEBUG = false;
 
-// Interfaces/Classes
-interface ElementDict {
-    [ElementXpath: string]: { Element: ElementInfo };
-}
-
-interface RulesBrokenDict
-{
-    [Type: string]: {currentElement : {
-                       domRect: DOMRect|undefined,
-                       windowX: number,
-                       windowY: number
-                    }
-                    previousElement: {
-                        domRect: DOMRect|undefined,
-                        windowX: number,
-                        windowY: number
-                     }}
-}
-
-interface Dimensions {
-    width: number;
-    height: number;
-}
-
-interface ElementInfo {
-    tagName: string | undefined;
-    classList: DOMTokenList | undefined;
-    id: string | undefined;
-    boundsRect: DOMRect|undefined;
-    xpath: string;
-    nextElement?: string;
-    window?: {
-        scrollX:number,
-        scrollY:number,
-    }
-}
-
-// Functions
-
-// Function to calculate the center of a rectangle
-function getRectCenter(element:ElementInfo,xPos:number,yPos:number) {
-   
-    const width= element.boundsRect?.width ?? 0;
-    const height = element.boundsRect?.height?? 0;
-
-    return {
-        x: xPos + width / 2,
-        y: yPos + height / 2
-    };
-}
-
-// Function to create an SVG with specified dimensions
-function createSvg(width: number, height: number, element:ElementInfo, previosElement:ElementInfo): string {
-    console.log("WIDTH", width);
-    console.log("Height", height);
-    // Initialize position variables
-    let xPos: number = 0;
-    let yPos: number = 0;
-    let svgContent = "";
-
-    // Check if element.boundsRect is defined and has required properties
-    if (element.boundsRect?.x !== undefined 
-        && element.boundsRect?.y !== undefined
-        && element.window?.scrollX !== undefined 
-        && element.window?.scrollY !== undefined
-        ){
-
-        // Current Element
-        xPos = element.boundsRect.x + element.window.scrollX ;
-        yPos = element.boundsRect.y + element.window.scrollY;
-        const currentElementCenter = getRectCenter(element,xPos,yPos);
-        
-        if (previosElement.boundsRect !== undefined)
-        {
-            // Previous Element
-            const previousXPos = (previosElement.boundsRect?.x ?? 0) + (previosElement.window?.scrollX ?? 0);
-            const previousYPos = (previosElement.boundsRect?.y ?? 0) + (previosElement.window?.scrollY ?? 0);
-            const previousElementCenter = getRectCenter(previosElement,previousXPos,previousYPos);
-
-            // Create SVG content
-            svgContent = `
-                <!-- ${element.xpath} -->
-                <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="green" />
-                    <rect x="${previousXPos}" y="${previousYPos}" width="${previosElement.boundsRect.width}" height="${previosElement.boundsRect.height}" fill="red" />
-                    <line x1="${previousElementCenter.x}" y1="${previousElementCenter.y}" x2="${currentElementCenter.x}" y2="${currentElementCenter.y}" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
-                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-                        <path d="M0,0 L0,6 L9,3 z" fill="black" />
-                    </marker>
-                </svg>
-            `;
-        }
-        else{
-            // Create SVG content
-            svgContent = `
-                <!-- ${element.xpath} -->
-                <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-                    ${element && element.boundsRect? ` <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="green" />
-                    ` : ''}
-                </svg>
-            `;
-        }
-    }
+async function run() {
+    // Launch Chromium browser
+    const browser = await chromium.launch({
+        args: ['--window-size=1920,1040'],
+        headless: false,
+        channel: 'chrome',
+        // bypassCSP: true,
+        devtools: DEBUG,
+      });
     
+    // Create a new browser context
+    const context: BrowserContext = await browser.newContext();
+    
+    // Create a new page
+    const page: Page = await context.newPage();
 
-    return svgContent.trim();
-}
+    // Navigate to a URL (replace with your desired URL)
+    await page.goto('https://www.tech.gov.sg/');
 
-// Function to save the SVG to a file
-function saveSvgToFile(svgContent: string, fileName: number): void {
-    // Specify the full file path
-    const filePath = `/Users/lianglee-royjesse/PWD_Simulation/svgs_elements/${fileName}.svg`;
+    const ElementMoved:ElementDict = {};
+    const rulesbroken:RulesBrokenDict = {};
 
-    // Ensure the directory exists
-    const directory = "/Users/lianglee-royjesse/PWD_Simulation/svgs_elements";
-    if (!fs.existsSync(directory)) {
-        fs.mkdirSync(directory, { recursive: true });
-    }
-
-    // Write the SVG content to the file
-    fs.writeFile(filePath, svgContent, (err) => {
-        if (err) {
-            console.error(`Error saving SVG file ${fileName}: ${err}`);
-        } else {
-            console.log(`SVG file ${fileName} saved successfully.`);
-        }
-    });
-}
-// functions saveErrorResults
-function saveErrorResults(rulesbroken:RulesBrokenDict): void {
-    // Specify the full file path
-    const fileName = "rulesbroken"
-    const filePath = `/Users/lianglee-royjesse/PWD_Simulation/RULESBROKEN/${fileName}.json`;
-
-    // Ensure the directory exists
-    const directory = "/Users/lianglee-royjesse/PWD_Simulation/RULESBROKEN";
-    if (!fs.existsSync(directory)) {
-        fs.mkdirSync(directory, { recursive: true });
-    }
-     // Convert the rulesbroken object to a JSON string
-     const jsonContent = JSON.stringify(rulesbroken, null, 2);
-
-    // Write the SVG content to the file
-    fs.writeFile(filePath, jsonContent, (err) => {
-        if (err) {
-            console.error(`Error saving SVG file ${fileName}: ${err}`);
-        } else {
-            console.log(`SVG file ${fileName} saved successfully.`);
-        }
-    });
-}
-
-// Function to capture scroll position
-const getScrollPosition = async (page:Page) => {
-    return await page.evaluate(() => {
-        return {
-            scrollX: window.scrollX,
-            scrollY: window.scrollY
-        };
-    });
-};
-
-const ElementMoved:ElementDict = {};
-const rulesbroken:RulesBrokenDict = {};
-
-// Use https://www.dungeonmastersvault.com/ for the case where there is an illogical flow to it
-// Use https://www.tech.gov.sg/ for a good test no Errors
-const startUrls = ['https://www.tech.gov.sg/'];
-
-const crawler = new PlaywrightCrawler({
-    launchContext: {
-        // Playwright launch options
-        launchOptions: {
-            headless: false, // Set to true if you want to run in headless mode
-        },
-    },
-    async requestHandler({ page, request, enqueueLinks }) {
-        console.log(`Processing ${request.url}...`);
+    async function tabsItems() {
         // Ensure the viewport size is explicitly set
-        await page.setViewportSize({ width: 1980, height: 1080});
+        await page.setViewportSize({ width: 1200, height: 1080});
 
         // Verify viewport size with null check
         const viewportSize = await page.viewportSize();
@@ -362,13 +207,15 @@ const crawler = new PlaywrightCrawler({
     saveErrorResults(rulesbroken);
 
 
-    },
-    maxRequestsPerCrawl: 1, // Limit the number of requests for the example
-});
+    }
+    tabsItems();
 
-(async () => {
-    await crawler.run(startUrls);
-})();
+    // Keep the browser window open
+    await new Promise(() => {});
+    
+    // Close the browser
+    await browser.close();
+}
 
-
-
+// Run the function
+run().catch(console.error);
