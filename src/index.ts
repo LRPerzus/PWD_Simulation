@@ -34,6 +34,10 @@ interface ElementInfo {
     boundsRect: DOMRect|undefined;
     xpath: string;
     nextElement?: string;
+    window?: {
+        scrollX:number,
+        scrollY:number,
+    }
 }
 
 // Functions
@@ -48,12 +52,19 @@ function createSvg(width: number, height: number, element:ElementInfo): string {
     let svgContent = "";
 
     // Check if element.boundsRect is defined and has required properties
-    if (element.boundsRect?.x !== undefined && element.boundsRect?.y !== undefined) {
-        xPos = element.boundsRect.x;
-        yPos = element.boundsRect.y;
+    if (element.boundsRect?.x !== undefined 
+        && element.boundsRect?.y !== undefined
+        && element.window?.scrollX !== undefined 
+        && element.window?.scrollY !== undefined){
+        xPos = element.boundsRect.x + element.window.scrollX ;
+        yPos = element.boundsRect.y + element.window.scrollY;
+        width +=  element.window.scrollX;
+        height += element.window.scrollY;
 
         // Create a new SVG document
         svgContent = `
+        <!-- ${element.xpath} -->
+
         <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
             <rect x="${xPos}" y="${yPos}" width="${element.boundsRect.width}" height="${element.boundsRect.height}" fill="blue" />
         </svg>
@@ -120,9 +131,10 @@ const getScrollPosition = async (page:Page) => {
 
 const ElementMoved:ElementDict = {};
 const rulesbroken:RulesBrokenDict = {};
+
 // Use https://www.dungeonmastersvault.com/ for the case where there is an illogical flow to it
 // Use https://www.tech.gov.sg/ for a good test no Errors
-const startUrls = ['https://www.dungeonmastersvault.com/'];
+const startUrls = ['https://www.lazada.sg/tag/power-bank/?q=power%20bank&catalog_redirect_tag=true'];
 
 const crawler = new PlaywrightCrawler({
     launchContext: {
@@ -206,6 +218,9 @@ const crawler = new PlaywrightCrawler({
                 }
                 return outputElement;
             });
+            const currentScrollPosition = await getScrollPosition(page);
+            focusedElement.window = currentScrollPosition;
+
             activeElementTagName = focusedElement?.tagName;
 
             // When it reaches the end it goes back to the searchBar
@@ -229,7 +244,6 @@ const crawler = new PlaywrightCrawler({
 
             ElementMoved[xpathFocus] = {Element : focusedElement};
             
-            const currentScrollPosition = await getScrollPosition(page);
 
            if (prevousElementXpath != "") 
            {
