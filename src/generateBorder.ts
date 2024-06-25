@@ -46,6 +46,8 @@ export async function generateDivBorder(page: Page, ElementMoved: ElementDict) {
                     const body = document.body.getBoundingClientRect();
                     svg.style.width = `${body.width}px`;
                     svg.style.height = `${body.height}px`;
+                    svg.style.zIndex = `9998`;
+
 
                     // Calculate line coordinates within SVG
                     var lineX1 = currentElementCenter.x - svg.getBoundingClientRect().left;
@@ -113,6 +115,7 @@ export async function generateDivBorder(page: Page, ElementMoved: ElementDict) {
 
                     // Div hover events
                     newDiv.addEventListener('mouseover', () => {
+                        console.log("HEY YA Mouse over");
                         const nextElementXPath = newDiv.getAttribute("nextElement") ?? "";
                         const nextElement = document.getElementById(nextElementXPath);
                         if (nextElement !== null)
