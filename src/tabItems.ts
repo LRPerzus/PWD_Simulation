@@ -3,12 +3,12 @@
 import { Page } from "playwright";
 import {ElementDict,Dimensions,ElementInfo,getScrollPosition,createSvg,saveSvgToFile,RulesBrokenDict,saveErrorResults} from "./common"
 import { Dataset } from '@crawlee/playwright';
+import {generateDivBorder} from "./generateBorder"
 
 export async function tabsItems(page:Page,ElementMoved:ElementDict,rulesbroken:RulesBrokenDict) {
+    // I need the page to be loaded before the dom can access its size and things
+    // Cause there will be a Navigaton Error coming out
     await page.waitForLoadState('networkidle')
-
-    // Ensure the viewport size is explicitly set
-    await page.setViewportSize({ width: 1200, height: 1080});
 
     // Verify viewport size with null check
     const viewportSize = await page.viewportSize();
@@ -27,8 +27,6 @@ export async function tabsItems(page:Page,ElementMoved:ElementDict,rulesbroken:R
             height: document.body.getBoundingClientRect().height
         };
     });
-
-    console.log("dimensionsOfPage",dimensionsOfPage);
     
     let count = 0;
     let previosElement:ElementInfo;
@@ -110,6 +108,8 @@ export async function tabsItems(page:Page,ElementMoved:ElementDict,rulesbroken:R
        if (prevousElementXpath != "") 
        {
         const previosElement = ElementMoved[prevousElementXpath].Element;
+        // Updates the next Element
+        previosElement.nextElement = focusedElement.xpath;
         // console.log("previosElement",previosElement);
         // Write into SVG
         const svg:string = createSvg(dimensionsOfPage.width,dimensionsOfPage.height,focusedElement,previosElement);
@@ -185,6 +185,6 @@ export async function tabsItems(page:Page,ElementMoved:ElementDict,rulesbroken:R
     await Dataset.pushData(ElementMoved[xpathFocus]);
 }
 saveErrorResults(rulesbroken);
-
+generateDivBorder(page,ElementMoved);
 
 }

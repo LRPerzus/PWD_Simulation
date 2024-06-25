@@ -7,7 +7,6 @@ export const DEBUG = false;
 async function run() {
     // Launch Chromium browser
     const browser = await chromium.launch({
-        args: ['--window-size=1920,1040'],
         headless: false,
         channel: 'chrome',
         // bypassCSP: true,
@@ -15,7 +14,12 @@ async function run() {
       });
     
     // Create a new browser context
-    const context: BrowserContext = await browser.newContext();
+    const context = await browser.newContext({
+        ignoreHTTPSErrors: true,
+        serviceWorkers: 'block',
+        viewport: null,
+      });
+  
     const ElementMoved:ElementDict = {};
     const rulesbroken:RulesBrokenDict = {};
 
@@ -28,7 +32,7 @@ async function run() {
     const page: Page = await context.newPage();
 
     // Navigate to a URL (replace with your desired URL)
-    await page.goto('https://www.tech.gov.sg/', { waitUntil: 'domcontentloaded' });
+    await page.goto('https://www.dungeonmastersvault.com/', { waitUntil: 'domcontentloaded' });
     
     // Wait until browser context is closed
     await new Promise<void>(resolve => {
